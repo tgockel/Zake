@@ -649,6 +649,9 @@ class FakeTransactionRequest(object):
                 self.committed = True
             return results
 
+    def commit_async(self):
+        return utils.dispatch_async(self._client.handler, self.commit)
+
     def __enter__(self):
         return self
 
